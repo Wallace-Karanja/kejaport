@@ -1,0 +1,23 @@
+@charset "ut-f8";
+
+#homepage { min-height: 100vh; background-image: url('../images/west1.png');}
+
+/* body {background-color: rgb(47, 48, 49);} */
+
+h3 {color: #fff}
+
+nav ul li a {color:#fff; font-weight: bold;}
+
+nav ul li a:hover{color: #fff;}
+
+.hover {background-color: #ff5c00;}
+
+#searchForm{margin-top: 200px;}
+
+#search{background-color: #ff5c00;}
+
+#input{border-color: #ff5c00; color: #ff5c00;}
+
+.hoverImage{height: 200%; width: 200%;}
+
+/* header {background-color: #fff;}; */
