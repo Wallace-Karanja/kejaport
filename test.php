@@ -2,10 +2,6 @@
 <?php
   // echo $_SERVER['DOCUMENT_ROOT']; // document root
  ?>
- <?php
-    $sql = "SELECT * FROM constituencies ORDER BY id";
-    $result = $database->query($sql);
-  ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -15,6 +11,8 @@
     <title>For payment</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
     integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="javascript.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="row">
@@ -34,20 +32,30 @@
                 <tr>
                   <td>Constituency</td>
                   <td>
-                      <select name="constituency">
-                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                    <option value="<?php echo $row['id'] ; ?>"><?php echo $row['constituency'] ;?></option>
+                      <select name="constituency" id="constituency" onchange="showUser(this.value)">
+                          <option value="0">select constituency</option>
+                          <?php
+                            $sql = "SELECT * FROM constituencies ORDER BY id";
+                            $result = $database->query($sql);
+                           ?>
+                    <?php while ($constituencies = mysqli_fetch_assoc($result)) { ?>
+                    <option value="<?php echo $constituencies['id'] ; ?>"><?php echo $constituencies['constituency'] ;?></option>
                     <?php } ; ?>
                       </select>
                   </td>
                 </tr>
                 <tr>
                   <td>Ward</td>
-                  <td><input></td>
+                  <td>
+                      <select class="" name="ward" id="txtHint">
+                          <option value="0">select ward</option>
+
+                      </select>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Area</td>
-                  <td><input></td>
+                  <td> Specific Area</td>
+                  <td><input type="text" name="specific_area"></td>
                 </tr>
                 <tr>
                   <td>Agency (optional)</td>
@@ -55,16 +63,20 @@
                 </tr>
                 <tr>
                   <td>Type of house</td>
-                  <td> <select class="" name="house_type">
-                    <option value="1">Single</option>
-                    <option value="2">Bedsitter</option>
-                    <option value="3">One Bedroom</option>
-                    <option value="4">Two Bedrooms</option>
+                  <td><select class="" name="house_type">
+                      <option value="0">select house type</option>
+                      <?php
+                        $sql = "SELECT * FROM houses ORDER BY id";
+                        $result = $database->query($sql);
+                       ?>
+                <?php while ($houses = mysqli_fetch_assoc($result)) { ?>
+                <option value="<?php echo $houses['id'] ; ?>"><?php echo $houses['house_type'] ;?></option>
+                <?php } ; ?>
                   </select>
                 </td>
                 </tr>
                 <tr>
-                  <td>Rent</td>
+                  <td>Rent KSh</td>
                   <td><input type="number" name="rent"></td>
                 </tr>
                 <tr>
@@ -77,10 +89,9 @@
                 </tr>
                 <tr>
                   <td></td>
-                  <td><input type="submit" name="submit" value="SUBMIT ADVERT"></td>
+                  <td><input type="submit" name="submit" value="submit"></td>
                 </tr>
               </tbody>
-
             </table>
           </form>
       </div>
@@ -88,12 +99,17 @@
 
       </div>
     </div>
-
+<pre>
 <?php
   if (isset($_POST['submit'])) {
-      var_dump($_POST);
+      $post = $_POST ;
+      foreach ($post as $key => $value) {
+          echo "$key : $value <br>";
+      }
   }
  ?>
+ </pre>
+ <?php //echo $_GET['id']; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
      integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>

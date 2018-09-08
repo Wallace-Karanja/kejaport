@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `wards` (
-  `constituency_id` int(11) NOT NULL,
+  `constituency_id` int(11),
+  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
   `ward` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
