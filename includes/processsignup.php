@@ -1,7 +1,7 @@
 <?php require($_SERVER ["DOCUMENT_ROOT"]."/kejaport/includes/initialize.php");?>
 <?php
-// $sessions have been used to echo back the user input, to prevent the user from having to retype every details
-// they entered incase a password was not verified
+// $sessions have been used to echo back the user input, to prevent the user from having to retype every detail they entered incase a password was not verified
+// this script will be reviewed and improved
 $first_name = (isset($_POST['first_name'])) ? $_POST['first_name'] : "";
 $last_name = (isset($_POST['last_name'])) ? $_POST['last_name'] : "";
 $email_address = (isset($_POST['email_address'])) ? $_POST['email_address'] : "";
@@ -28,7 +28,13 @@ if(empty($first_name) || empty($last_name) || empty($email_address) || empty($ph
         $sql = "SELECT * FROM users WHERE email_address = '".$database->escape_value($emailaddress)."'";
         $database->query($sql);
         if(empty($database->affected_rows())){ // if there is no record sign up the user
-            $user->create_new_user($firstname, $lastname, $emailaddress, $phonenumber, $hashed_password);
+
+            $user->first_name = $firstname ;
+            $user->last_name = $lastname ;
+            $user->email_address = $emailaddress;
+            $user->phone_number = $phonenumber ;
+            $user->password = $hashed_password ;
+            $user->create();
             //if successiful no sessions will be sets
             redirect_to("../login.php");
         }else{

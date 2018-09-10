@@ -307,7 +307,7 @@ class Photograph{
 
     public function delete() { // desroy method is to be used , this method will
         // delete the database entry of a photograph and the photograph will only be left in
-        // the upload folder 
+        // the upload folder
         global $database;
         $sql = "DELETE FROM ".self::$table_name." ";
         $sql .= " WHERE photo_id = ".$database->escape_value($this->photo_id);

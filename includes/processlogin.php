@@ -5,8 +5,8 @@ if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     if(!empty($email) && !empty($password)){
-        if(User::authenticate($email, $password)){ // authenticate a user 
-            redirect_to("../useraccount.php");
+        if(User::authenticate($email, $password)){ // authenticate a user
+            redirect_to("../advertise.php");
         }else{
             // $session->message ("Incorrect Email or Password");
             $_SESSION['email'] = htmlentities($email);

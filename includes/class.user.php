@@ -126,20 +126,20 @@ class User {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
-    public function create_new_user($first_name, $last_name, $email_address, $phone_number, $password) // create a new user, when a user signs up
-    {
-        global $database;
-        $sql = "INSERT INTO ".self::$table_name." (first_name, last_name, email_address, phone_number, password) VALUES (" ;
-        $sql .= "'". $database->escape_value($first_name);
-        $sql .= "','".$database->escape_value($last_name);
-        $sql .= "','".$database->escape_value($email_address);
-        $sql .= "','".$database->escape_value($phone_number);
-        $sql .= "','".$database->escape_value($password)."')";
-        return $database->query($sql);
+    // public function create_new_user($first_name, $last_name, $email_address, $phone_number, $password) // create a new user, when a user signs up
+    // {
+    //     global $database;
+    //     $sql = "INSERT INTO ".self::$table_name." (first_name, last_name, email_address, phone_number, password) VALUES (" ;
+    //     $sql .= "'". $database->escape_value($first_name);
+    //     $sql .= "','".$database->escape_value($last_name);
+    //     $sql .= "','".$database->escape_value($email_address);
+    //     $sql .= "','".$database->escape_value($phone_number);
+    //     $sql .= "','".$database->escape_value($password)."')";
+    //     return $database->query($sql);
+    //
+    // }
 
-    }
-
-    // the method below has a bug and it will be debugged , in the mean while the method above
+    // the method below had a bug and it was be debugged , in the mean while the method above was deprecated
     // be used to create new users
     public function create() {
        // creating a user
@@ -149,7 +149,7 @@ class User {
        $sql .= join(",", array_keys($attributes));
        $sql .= " ) VALUES ( '";
        $sql .= join("' , '", array_values($attributes));
-       $sql .= " ')";
+       $sql .= "')";
 
        if($database->query($sql)){
            $this->id = $database->insert_id();

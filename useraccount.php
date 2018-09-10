@@ -35,15 +35,15 @@
 <body>
 <h1>Welcome !</h1>
 <h2>Place Your Advert</h2>
+<?php echo output_message($message) ;?>
 <!--log out the user -->
 <form method="post" action="includes/processlogin.php">
 <label><?php echo  $user_object->full_name(); ?></label>
 <input type="submit" name="logout" value="Logout">
 </form>
-<?php echo output_message($message) ;?>
 <!-- to upload photo form -->
 <!-- users adverts to be completed  -->
-<form action="useraccount.php" enctype="multipart/form-data" method="POST">
+<form>
     <table>
         <tr>
             <td>Location : <input type="text" name="location"></td>
@@ -61,8 +61,11 @@
         </tr>
     </table>
     <h3>Upload images for the house selected above</h3>
+  </form>
+
+  <form  action="useraccount.php" enctype="multipart/form-data" method="POST">
     <table>
-        <tr>success
+        <tr>
             <td><input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max_file_size;?>"></td>
             <td><input type="file" name="file_upload"></td>
             <td>Caption:<input type="text" name="caption" value=""></td>

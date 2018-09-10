@@ -25,6 +25,7 @@ require_once (LIB_PATH."class.database.php");
 require_once (LIB_PATH."class.user.php");
 require_once (LIB_PATH."class.session.php");
 require_once (LIB_PATH."class.photograph.php");
+require_once (LIB_PATH."class.advertisement.php");
 
 // load helper classes for paginating the homepage index.php
 require_once (LIB_PATH."class.pagination.php"); // this is a helper class
